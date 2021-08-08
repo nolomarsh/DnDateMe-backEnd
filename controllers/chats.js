@@ -17,6 +17,15 @@ router.get('/', (req,res) => {
     })
 })
 
+//update title
+router.put('/:id', (req,res) => {
+    if (req.body.title){
+        Chat.findByIdAndUpdate(req.params.id, {title:req.body.title}, {new:true}, (error, updatedChat) => {
+            res.json(updatedChat)
+        })
+    }
+    res.json({})
+})
 
 //update - add user
 router.put('/:id/addUser', (req,res) => {
