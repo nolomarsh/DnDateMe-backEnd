@@ -20,6 +20,9 @@ router.get('/', (req,res) => {
 
 //Update(put)
 router.put('/:id', (req,res) => {
+    if (req.body.password) {
+        req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
+    }
     User.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updatedUser) => {
         res.json(updatedUser)
     })

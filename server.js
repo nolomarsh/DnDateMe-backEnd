@@ -40,6 +40,8 @@ const usersController = require('./controllers/users.js')
 app.use('/users', usersController)
 const sessionsController = require('./controllers/sessions.js')
 app.use('/sessions', sessionsController)
+const chatsController = require('./controllers/chats.js')
+app.use('/chats', chatsController)
 
 //****************
 //**** Routes ****
