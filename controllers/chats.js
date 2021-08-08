@@ -17,6 +17,13 @@ router.get('/', (req,res) => {
     })
 })
 
+//Read - get chats including user
+router.get('/:userId', (req,res) => {
+    Chat.find({memberIds: req.params.userId}, (error, userChats) => {
+        res.json(userChats)
+    })
+})
+
 //update title
 router.put('/:id', (req,res) => {
     if (req.body.title){
