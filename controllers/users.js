@@ -18,6 +18,12 @@ router.get('/', (req,res) => {
     })
 })
 
+router.get('/:id', (req,res) => {
+    User.findById(req.params.id, (error, foundUser) => {
+        res.json(foundUser)
+    })
+})
+
 //Update(put)
 router.put('/:id', (req,res) => {
     if (req.body.password) {
