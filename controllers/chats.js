@@ -56,10 +56,17 @@ router.put('/:id/addMessage', (req,res) => {
     })
 })
 
+//clear chat history
+router.put('/:id/clear', (req,res) => {
+    Chat.findByIdAndUpdate(req.params.id, {messages:[]},{new:true},(error, updatedChat) => {
+        res.json(updatedChat)
+    })
+})
+
 //destroy
 router.delete('/:id', (req,res) => {
     Chat.findByIdAndRemove(req.params.id, (error, removedChat) => {
-
+        res.json(removedChat)
     })
 })
 
