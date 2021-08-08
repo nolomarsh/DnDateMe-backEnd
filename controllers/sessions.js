@@ -7,17 +7,14 @@ router.post('/', (req,res) => {
     User.findOne({email: req.body.email}, (error, foundUser) => {
         // console.log(req.body)
         if(error){
-            console.log(error)
-            res.send("DB error")
+            res.json({error:"Database error"})
         } else if (!foundUser){
-            console.log("No user found")
-            res.send("No user found with that email")
+            res.json({error:"No user found with that email"})
         } else {
             if (bcrypt.compareSync(req.body.password, foundUser.password)){
                 res.json(foundUser)
             } else {
-                console.log("Incorrect password")
-                res.send("Incorrect password")
+                res.json({error:"Incorrect email/password"})
             }
         }
     })
