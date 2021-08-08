@@ -36,5 +36,3 @@ router.delete('/:id', (req,res) => {
 })
 
 module.exports = router
-
-//$2b$10$Ha0ql6jtadyy1DKnwkL3Yekhc3T39pF.MaJjs3MmqzPywhLhTqxL.

@@ -32,8 +32,19 @@ router.put('/:id/addUser', (req,res) => {
     })
 })
 
+//update - remove member
+router.put('/:id/removeUser', (req,res) => {
+    Chat.findById(req.params.id, (error, foundChat) => {
+        let memberIndex = foundChat.memberIds.indexOf(req.body.removedId)
+        foundChat.memberIds.splice(memberIndex,1)
+        foundChat.save((error, savedChat) => {
+            res.json(savedChat)
+        })
+    })
+})
+
 //update - add message
-router.post('/:id/addMessage', (req,res) => {
+router.put('/:id/addMessage', (req,res) => {
     Chat.findById(req.params.id, (error, foundChat) => {
         foundChat.messages.push({
             senderId: req.body.senderId,
