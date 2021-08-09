@@ -22,12 +22,17 @@ router.post('/', (req,res) => {
 })
 
 router.get('/', (req,res) => {
-    User.findById(req.session.currentUser._id, (error, foundUser) => {
-        if (error){
-            console.log(error)
-        }
-        res.json(foundUser)
-    })
+    if (req.session.currentUser){
+        User.findById(req.session.currentUser._id, (error, foundUser) => {
+            if (error){
+                console.log(error)
+            }
+            res.json(foundUser)
+        })
+    } else {
+        res.json({error:"No currentUser"})
+    }
+
 })
 
 router.delete('/', (req,res) => {
