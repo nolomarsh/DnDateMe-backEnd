@@ -71,6 +71,7 @@ router.put('/:id/addMessage', (req,res) => {
     Chat.findById(req.params.id, (error, foundChat) => {
         foundChat.messages.push({
             senderId: req.body.senderId,
+            senderName: req.body.senderName,
             body: req.body.body
         })
         foundChat.save((error, savedChat) => {
