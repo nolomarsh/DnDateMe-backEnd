@@ -18,9 +18,16 @@ router.get('/', (req,res) => {
 })
 
 //Read - get chats including user
-router.get('/:userId', (req,res) => {
+router.get('/byUser/:userId', (req,res) => {
     Chat.find({memberIds: req.params.userId}, (error, userChats) => {
         res.json(userChats)
+    })
+})
+
+//Read - get particular chat
+router.get('/:chatId', (req,res) => {
+    Chat.findById(req.params.chatId, (error, foundChat) => {
+        res.json(foundChat)
     })
 })
 
