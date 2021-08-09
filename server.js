@@ -37,6 +37,8 @@ const chatsController = require('./controllers/chats.js')
 //****************
 //** Middleware **
 //****************
+app.use(cors())
+app.use(express.json())
 app.use(
     session({
         secret: process.env.SECRET,
@@ -44,8 +46,6 @@ app.use(
         saveUninitialized: false
     })
 )
-app.use(cors())
-app.use(express.json())
 app.use('/users', usersController)
 app.use('/sessions', sessionsController)
 app.use('/chats', chatsController)
