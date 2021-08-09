@@ -21,8 +21,11 @@ router.post('/', (req,res) => {
     })
 })
 
-router.post('/loggedInUser', (req,res) => {
+router.get('/', (req,res) => {
     User.findById(req.session.currentUser._id, (error, foundUser) => {
+        if (error){
+            console.log(error)
+        }
         res.json(foundUser)
     })
 })
