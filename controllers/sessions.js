@@ -12,12 +12,23 @@ router.post('/', (req,res) => {
             res.json({error:"No user found with that email"})
         } else {
             if (bcrypt.compareSync(req.body.password, foundUser.password)){
+                req.session.currentUser = foundUser
                 res.json(foundUser)
             } else {
                 res.json({error:"Incorrect email/password"})
             }
         }
     })
+})
+
+router.post('/loggedInUser', (req,res) => {
+    User.findById(req.session.currentUser._id, (error, foundUser) => {
+        res.json(foundUser)
+    })
+})
+
+router.delete('/', (req,res) => {
+    req.session.destroy()
 })
 
 module.exports = router
