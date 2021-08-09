@@ -30,13 +30,14 @@ router.get('/', (req,res) => {
             res.json(foundUser)
         })
     } else {
-        res.json({error:"No currentUser"})
+        res.json(req.session)
     }
-
 })
 
 router.delete('/', (req,res) => {
-    req.session.destroy()
+    req.session.destroy(() => {
+        res.json("session destroyed")
+    })
 })
 
 module.exports = router
