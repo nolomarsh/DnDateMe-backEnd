@@ -31,7 +31,7 @@ db.on('disconnected', () => console.log('mongo disconnected'))
 //** Controllers **
 //*****************
 const usersController = require('./controllers/users.js')
-const sessionsController = require('./controllers/sessions.js')
+// const sessionsController = require('./controllers/sessions.js')
 const chatsController = require('./controllers/chats.js')
 const groupsController = require('./controllers/groups.js')
 
@@ -40,15 +40,15 @@ const groupsController = require('./controllers/groups.js')
 //****************
 app.use(cors())
 app.use(express.json())
-app.use(
-    session({
-        secret: process.env.SECRET,
-        resave: false,
-        saveUninitialized: false
-    })
-)
+// app.use(
+//     session({
+//         secret: process.env.SECRET,
+//         resave: false,
+//         saveUninitialized: false
+//     })
+// )
 app.use('/users', usersController)
-app.use('/sessions', sessionsController)
+// app.use('/sessions', sessionsController)
 app.use('/chats', chatsController)
 app.use('/groups', groupsController)
 
