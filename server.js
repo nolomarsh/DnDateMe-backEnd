@@ -33,6 +33,7 @@ db.on('disconnected', () => console.log('mongo disconnected'))
 const usersController = require('./controllers/users.js')
 const sessionsController = require('./controllers/sessions.js')
 const chatsController = require('./controllers/chats.js')
+const groupsController = require('./controllers/groups.js')
 
 //****************
 //** Middleware **
@@ -49,6 +50,7 @@ app.use(
 app.use('/users', usersController)
 app.use('/sessions', sessionsController)
 app.use('/chats', chatsController)
+app.use('/groups', groupsController)
 
 //****************
 //**** Routes ****
