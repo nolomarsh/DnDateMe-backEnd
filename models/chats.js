@@ -5,6 +5,7 @@ const chatSchema = mongoose.Schema({
     memberIds: [String],
     messages: [{
         senderId: String,
+        senderName: String,
         body: String,
     }]
 })
