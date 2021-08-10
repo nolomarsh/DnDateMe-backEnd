@@ -21,6 +21,7 @@ router.post('/', (req,res) => {
     })
 })
 
+
 router.get('/', (req,res) => {
     if (req.session.currentUser){
         User.findById(req.session.currentUser._id, (error, foundUser) => {
@@ -33,6 +34,7 @@ router.get('/', (req,res) => {
         res.json(req.session)
     }
 })
+
 
 router.delete('/', (req,res) => {
     req.session.destroy(() => {
