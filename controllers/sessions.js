@@ -13,6 +13,7 @@ router.post('/', (req,res) => {
         } else {
             if (bcrypt.compareSync(req.body.password, foundUser.password)){
                 req.session.currentUser = foundUser
+                
                 res.json(foundUser)
             } else {
                 res.json({error:"Incorrect email/password"})
