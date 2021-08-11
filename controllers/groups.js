@@ -46,7 +46,7 @@ router.put('/:groupid/:requestid', (req,res) => {
 
 //accept group join request
 router.put('/:groupid/:requestid/accept', (req,res) => {
-    Group.findByIdAndUpdate({ _id: req.params.groupid}, { '$pull': { 'joinRequests': req.params.requestid }}, { safe: true, multi:true }, (err, changedGroup) => {
+    Group.findByIdAndUpdate({ _id: req.params.groupid}, { '$pull': { 'joinRequests': req.params.requestid }}, { safe: true, multi:true, new: true }, (err, changedGroup) => {
       changedGroup.members.push(req.params.requestid)
       changedGroup.save((err, data) => {
         res.json(changedGroup)
@@ -56,7 +56,7 @@ router.put('/:groupid/:requestid/accept', (req,res) => {
 
 //deny group join request
 router.put('/:groupid/:requestid/deny', (req,res) => {
-    Group.findByIdAndUpdate({ _id: req.params.groupid}, { '$pull': { 'joinRequests': req.params.requestid }}, { safe: true, multi:true }, (err, changedGroup) => {
+    Group.findByIdAndUpdate({ _id: req.params.groupid}, { '$pull': { 'joinRequests': req.params.requestid }}, { safe: true, multi:true, new: true }, (err, changedGroup) => {
       res.json(changedGroup)
     })
 })
