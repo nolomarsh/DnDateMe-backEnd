@@ -43,6 +43,38 @@ router.put('/friendRequest', (req,res) => {
     })
 })
 
+router.put('/handleRequest', (req,res) => {
+    User.findById(req.body.senderId, (error, sender) => {
+        User.findById(req.body.receiverId, (error, receiver) => {
+            let requestIndex = receiver.requestIds.indexOf(sender._id.toString())
+            receiver.requestIds.splice(requestIndex,1)
+            if(req.body.status === "accept"){
+                  receiver.friendIds.push(sender._id.toString())
+                  sender.friendIds.push(receiver._id.toString())
+            }
+            sender.save()
+            receiver.save((error, savedUser) => {
+                res.json(savedUser)
+            })
+        })
+    })
+})
+
+router.put('/handleUnFriend', (req,res) => {
+    User.findById(req.body.senderId, (error, sender) => {
+        User.findById(req.body.receiverId, (error, receiver) => {
+            let removeIndexSender = reciever.friendIds.indexOf(sender._id.toString())
+            reciever.friendIds.splice(removeIndexSender,1)
+            let removeIndexReceiver = sender.friendIds.indexOf(receiver._id.toString())
+            sender.friendIds.splice(removeIndexReceiver,1)
+            receiver.save()
+            sender.save((error, savedUser) => {
+                res.json(savedUser)
+            })
+        })
+    })
+})
+
 //Update(put) user info
 router.put('/:id', (req,res) => {
     if (req.body.password) {
