@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt')
 const express = require('express')
+const mongoose = require('mongoose')
 const router =  express.Router()
 const User = require('../models/users.js')
 const Group = require('../models/groups.js')
@@ -17,6 +18,13 @@ router.post('/', (req,res) => {
 router.get('/', (req,res) => {
     User.find({}, (error, allUsers) => {
         res.json(allUsers)
+    })
+})
+
+//Get users from an array of ids
+router.get('/findMany', (req,res) => {
+    User.find({_id: {$in: req.body.idArray}}, (error, foundUsers) => {
+        res.json(foundUsers)
     })
 })
 
