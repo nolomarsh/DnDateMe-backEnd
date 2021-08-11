@@ -22,7 +22,7 @@ router.get('/', (req,res) => {
 })
 
 //Get users from an array of ids
-router.get('/findMany', (req,res) => {
+router.post('/findMany', (req,res) => {
     User.find({_id: {$in: req.body.idArray}}, (error, foundUsers) => {
         res.json(foundUsers)
     })
