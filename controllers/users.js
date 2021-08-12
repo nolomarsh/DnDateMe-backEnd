@@ -130,4 +130,11 @@ router.delete('/:id', (req,res) => {
     })
 })
 
+//Get Group Admin
+router.get('/findAdmin/:adminId', (req,res) => {
+    User.findById(req.params.adminId, (error, foundAdmin) => {
+        res.json(foundAdmin)
+    })
+})
+
 module.exports = router
