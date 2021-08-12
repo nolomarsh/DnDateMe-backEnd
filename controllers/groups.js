@@ -61,4 +61,14 @@ router.put('/:groupid/:requestid/deny', (req,res) => {
     })
 })
 
+//send group messages
+router.put('/:groupid/:requestid/message', (req,res) => {
+    Group.findById(req.params.groupid, (err, foundGroup) => {
+      foundGroup.chat.push(req.body.message)
+      foundGroup.save((err, data) => {
+        res.json(foundGroup)
+      })
+    })
+})
+
 module.exports = router
