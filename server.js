@@ -20,7 +20,7 @@ mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
-})
+}) 
 
 // Error / success
 db.on('error', (err) => console.log(err.message + ' is Mongod not running?'))
