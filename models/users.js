@@ -9,7 +9,8 @@ const userSchema = mongoose.Schema({
     faveClass: [String],
     profileImg: String,
     friendIds: [String],
-    requestIds: [String]
+    requestIds: [String],
+    aboutMe: String
 })
 
 const User = mongoose.model("User", userSchema)
