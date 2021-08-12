@@ -42,6 +42,7 @@ router.put('/friendRequest', (req,res) => {
     })
 })
 
+// Accept/Deny Friend Request
 router.put('/handleRequest', (req,res) => {
     User.findById(req.body.senderId, (error, sender) => {
         User.findById(req.body.receiverId, (error, receiver) => {
@@ -59,6 +60,7 @@ router.put('/handleRequest', (req,res) => {
     })
 })
 
+// Un-friend
 router.put('/handleUnFriend', (req,res) => {
     User.findById(req.body.senderId, (error, sender) => {
         User.findById(req.body.receiverId, (error, receiver) => {
