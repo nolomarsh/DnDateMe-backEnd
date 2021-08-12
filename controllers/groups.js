@@ -32,25 +32,6 @@ router.put('/:id', (req,res) => {
     })
 })
 
-//get group posts for a particular group
-router.get('/:groupid/posts', (req,res) => {
-    Group.findById(req.params.groupid, (err, foundGroup) => {
-        res.json(foundGroup.posts)
-    })
-})
-
-//create group post
-router.post('/:groupid/post', (req,res) => {
-    Post.create(req.body, (err, createdPost) => {
-        Group.findById(req.params.groupid, (err foundGroup) => {
-            foundGroup.push(createdPost)
-            foundGroup.((save), (err, data) => {
-                res.json(createdPost)
-            })
-        })
-    })
-})
-
 
 //send group join request
 router.put('/:groupid/:requestid', (req,res) => {
